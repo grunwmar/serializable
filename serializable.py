@@ -23,7 +23,7 @@ class ISerializable(ABC):
         return self.__str__()
 
 
-class Serializable(ABC):
+class Serializable(ISerializable):
     """Serializable. Like ISerializable but has serialize and deserialize already implemented."""
 
     def serialize(self, filename: str=None, ensure_ascii: bool=True, indent: bool=None):
@@ -42,14 +42,3 @@ class Serializable(ABC):
             with open(filename, 'r') as f:
                 self.__dict__ = json.load(f)
                 return self
-
-    def __str__(self):
-        class_name = self.__class__.__name__
-        attributes = []
-        for attr, value in self.__dict__.items():
-            attributes.append(f'{attr!s}={value!r}')
-        attr_string = ', '.join(attributes)
-        return f'{class_name}({attr_string})'
-
-    def __repr__(self):
-        return self.__str__()

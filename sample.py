@@ -25,4 +25,4 @@ my_class.deserialize(json_string)
 
 print(my_class)
 
-my_class.serialize(filename="./file.json", indent=3, ensure_ascii=False)
+my_class.serialize(filename="./sample_output.json", indent=3, ensure_ascii=False)
