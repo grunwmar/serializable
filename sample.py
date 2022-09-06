@@ -12,7 +12,6 @@ class MyClassA(Serializable):
         super(__class__, self).__setattr__(name, value)
 
 
-
 my_class = MyClassA()
 
 json_string = """{
