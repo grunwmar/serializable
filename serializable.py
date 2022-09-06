@@ -24,17 +24,17 @@ class ISerializable(ABC):
 
 
 class Serializable(ABC):
-    """Serializable"""
+    """Serializable. Like ISerializable but has serialize and deserialize already implemented."""
 
-    def serialize(self, filename=None, ensure_ascii=True, indent=None):
+    def serialize(self, filename: str=None, ensure_ascii: bool=True, indent: bool=None):
         if filename is None:
             return json.dumps(self.__dict__)
         with open(filename, 'w') as f:
             json.dump(self.__dict__, f, ensure_ascii=ensure_ascii, indent=indent)
 
-    def deserialize(self, string=None, filename=None):
+    def deserialize(self, string: str=None, filename: str=None):
         if (string is not None) and (filename is not None):
-            raise Exception('Cannot enter booth arguments string and filename.')
+            raise Exception('Cannot enter both arguments string and filename.')
         if string is not None:
             self.__dict__ = json.loads(string)
             return self
